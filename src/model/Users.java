@@ -68,9 +68,9 @@ public class Users {
             if (this._widths[1] < user.username.length()) {
                 this._widths[1] = user.username.length();
             }
-            if (this._widths[2] < user.password.length()) {
+            /*if (this._widths[2] < user.password.length()) {
                 this._widths[2] = user.password.length();
-            }
+            }*/
             if (this._widths[3] < user.fullname.length()) {
                 this._widths[3] = user.fullname.length();
             }
@@ -80,12 +80,12 @@ public class Users {
             if (this._widths[5] < user.phone.length()) {
                 this._widths[5] = user.phone.length();
             }
-            if (this._widths[6] < User.userTypes()[user.userType].length()) {
-                this._widths[6] = User.userTypes()[user.userType].length();
+            if (this._widths[6] < User.userTypes()[user.userType - 1].length()) {
+                this._widths[6] = User.userTypes()[user.userType - 1].length();
             }
-            if (this._widths[7] < user.salt.length()) {
+            /*if (this._widths[7] < user.salt.length()) {
                 this._widths[7] = user.salt.length();
-            }
+            }*/
         }
     }
 

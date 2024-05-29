@@ -33,13 +33,19 @@ public class AdminController {
                     FarmController fc = new FarmController(_db);
                     fc.menu();
                 } break;
-                case 4: break;
+                case 4: { 
+                    UserController uc = new UserController(_db);
+                    uc.menu();
+                } break;
                 case 5: break;
                 case 6: break;
                 case 7: break;
                 case 8: break;
                 case 9: break;
-                case 10: break;
+                case 10: {
+                    UserController uc = new UserController(_db);
+                    uc.changePassword(); 
+                } break;
                 default: break;
             }
         } while(choice != 0);

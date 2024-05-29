@@ -90,18 +90,19 @@ public class User {
         String s = "";
         s += "|" + Menu.align("" + this.id, widths[0], Menu.RIGHT);
         s += "|" + Menu.align(this.username, widths[1], Menu.LEFT);
-        s += "|" + Menu.align("***", widths[2], Menu.LEFT);
+        s += "|" + Menu.align("***", widths[2], Menu.CENTER);
         s += "|" + Menu.align(this.fullname, widths[3], Menu.LEFT);
         s += "|" + Menu.align(this.email, widths[4], Menu.LEFT);
         s += "|" + Menu.align(this.phone, widths[5], Menu.LEFT);
         s += "|" + Menu.align("" + userTypes()[this.userType - 1], widths[6], Menu.LEFT);
-        s += "|" + Menu.align("***", widths[7], Menu.LEFT);
+        s += "|" + Menu.align("***", widths[7], Menu.CENTER);
         return s + "|\n";
     }
 
     public String[] options() {
         String[] options = {
             "Username  : " + this.username,
+            "Password  : " + this.password,
             "Fullname  : " + this.fullname,
             "Email     : " + this.email,
             "Phone     : " + this.phone,

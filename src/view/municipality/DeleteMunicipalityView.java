@@ -1,6 +1,5 @@
 package view.municipality;
 
-import model.Department;
 import model.Municipality;
 import tools.Menu;
 import tools.MyTool;

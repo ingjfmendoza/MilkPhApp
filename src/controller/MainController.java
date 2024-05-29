@@ -1,7 +1,6 @@
 package controller;
 
 import tools.Database;
-import tools.Menu;
 
 public class MainController {
     Database _db;
@@ -11,9 +10,9 @@ public class MainController {
     }
 
     public void login() {
-        boolean login = true;   // TODO
-        if (login) {
-            int userType = 1;   // TODO
+        UserController uc = new UserController(_db);
+        if (uc.login()) {
+            int userType = UserSession.getInstance(null).user.userType;
             switch (userType) {
                 case 1: {
                     AdminController ac = new AdminController(_db);
@@ -23,9 +22,6 @@ public class MainController {
                 case 3: break;  // milkman
                 default: break;
             }
-            
-        } else {
-            Menu.showError("Login failed!");
         }
     }
 }
