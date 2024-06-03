@@ -16,6 +16,8 @@ public class Menu {
     public final static int LEFT = 1;
     public final static int RIGHT = 2;
     public final static int CENTER = 3;
+    public static final int EXIT = 1;
+    public static final int RETURN = 2;
     public static char horizontalBorderChar = '-';
     public static char cornerBorderChar = '+';
     public static char verticalBorderChar = '|';

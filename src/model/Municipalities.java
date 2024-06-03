@@ -107,4 +107,19 @@ public class Municipalities {
         }
         return s + "|\n" + this._line + "\n";
     }
+
+    public String[] options(int departmentId) {
+        String[] options = new String[this._municipalities.length];
+        int count = 0;
+        for (int i = 0; i < this._municipalities.length; i++) {
+            if (this._municipalities[i].departmentId == departmentId) {
+                options[count++] = this._municipalities[i].name;
+            }
+        }
+        String[] newOptions = new String[count];
+        for (int i = 0; i < count; i++) {
+            newOptions[i] = options[i];
+        }
+        return newOptions;
+    }
 }

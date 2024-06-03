@@ -11,12 +11,42 @@ public class Department {
     public Department() {
     }
 
+    public Department(int DANEId, String name) {
+        this.DANEId = DANEId;
+        this.name   = name;
+    }
+    
     public Department(String[] data) {
         this.id     = Integer.parseInt(data[0]);
         this.DANEId = Integer.parseInt(data[1]);
         this.name   = data[2];
     }
     
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getDANEId() {
+        return DANEId;
+    }
+
+    public void setDANEId(int dANEId) {
+        DANEId = dANEId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void readDANEId() {
         do {
             this.DANEId = MyTool.readInt("DANE Id", 0);

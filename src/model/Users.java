@@ -97,4 +97,12 @@ public class Users {
         }
         return s + "|\n" + this._line + "\n";
     }
+
+    public String[] options() {
+        String[] options = new String[this._users.length];
+        for (int i = 0; i < this._users.length; i++) {
+            options[i] = this._users[i].username;
+        }
+        return options;
+    }
 }

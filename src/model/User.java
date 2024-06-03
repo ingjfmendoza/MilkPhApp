@@ -35,6 +35,7 @@ public class User {
 
     public void readPassword() {
         this.password = MyTool.readPassword();
+        this.encrypt();
     }
 
     public void readFullname() {

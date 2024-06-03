@@ -86,4 +86,12 @@ public class Departments {
         }
         return s + "|\n" + this._line + "\n";
     }
+
+    public String[] options() {
+        String[] options = new String[this._departments.length];
+        for (int i = 0; i < this._departments.length; i++) {
+            options[i] = this._departments[i].name;
+        }
+        return options;
+    }
 }

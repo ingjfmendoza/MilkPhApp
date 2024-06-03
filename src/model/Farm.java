@@ -62,7 +62,7 @@ public class Farm {
     public String tabular(int[] widths) {
         String s = "";
         s += "|" + Menu.align("" + this.id, widths[0], Menu.RIGHT);
-        s += "|" + Menu.align(this.name, widths[1], Menu.RIGHT);
+        s += "|" + Menu.align(this.name, widths[1], Menu.LEFT);
         s += "|" + Menu.align(this.ownerName, widths[2], Menu.LEFT);
         s += "|" + Menu.align(this.address, widths[3], Menu.LEFT);
         s += "|" + Menu.align(this.phone, widths[4], Menu.LEFT);

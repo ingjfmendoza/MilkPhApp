@@ -1,6 +1,7 @@
 package tools;
 
 import java.io.Console;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class MyTool {
@@ -109,5 +110,58 @@ public class MyTool {
             Menu.showError("Invalid email!");
         } while (true);
         return s;
+    }
+
+    public static long readDate() {
+        int year = MyTool.readInt("Year", -5000);
+        int month = getMonth();
+        int day = getDay(month, year);
+        try {
+            return new java.text.SimpleDateFormat("dd/MM/yyyy")
+                .parse(day + "/" + month + "/" + year).getTime() / 1000;
+        } catch (ParseException e) {
+            return 0;
+        }
+    }
+
+    public static int getMonth() {
+        int month = 1;
+        do {
+            String months[] = {
+                "January", "February", "March", "April", "May", "June", "July", 
+                "August", "September", "October", "November", "December"};
+            Menu.showMenu("Select a month", months, Menu.RETURN);
+            month = Menu.getOption(months);
+            if (month >= 1 && month <= 12) return month;
+        } while (true); 
+    }
+
+    public static int getDay(int month, int year) {
+        int maxDay = getMaxDay(month, year);
+        int day = 1;
+        do {
+            day = MyTool.readInt("Day", 0);
+            if (day >= 1 && day <= maxDay) break;
+            Menu.showError("Invalid day!");
+        } while (true);
+        return day;
+    }
+
+    public static int getMaxDay(int month, int year) {
+        switch (month) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                return 31;
+            case 4: case 6: case 9: case 11:
+                return 30;
+            case 2:
+                if (year % 4 == 0) return 29;
+                else return 28;
+            default: return 0;
+        }
+    }
+
+    public static String getDate(long epoch) {
+        return new java.text.SimpleDateFormat("dd/MM/yyyy")
+           .format(new java.util.Date(epoch * 1000));
     }
 }

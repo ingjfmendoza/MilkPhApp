@@ -37,7 +37,10 @@ public class AdminController {
                     UserController uc = new UserController(_db);
                     uc.menu();
                 } break;
-                case 5: break;
+                case 5: { 
+                    MilkmanController mc = new MilkmanController(_db);
+                    mc.menu();
+                } break;
                 case 6: break;
                 case 7: break;
                 case 8: break;

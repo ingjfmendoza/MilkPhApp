@@ -1,5 +1,14 @@
 package controller;
 
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+
+import java.util.Optional;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Department;
 import model.Departments;
 import tools.Database;
@@ -113,5 +122,142 @@ public class DepartmentController {
                 Menu.showError("Department not found!");
             }
         }
+    }
+
+    public void fillTable(TableView<Department> tbvDepartments) {
+        Departments departments = new Departments(_db, "");
+
+        if (tbvDepartments.getColumns().size() == 0) {
+            createTableColumns(tbvDepartments);
+        }
+
+        tbvDepartments.getItems().clear();
+        for (Department department : departments._departments) {
+            tbvDepartments.getItems().add(department);
+        }
+        tbvDepartments.refresh();
+    }
+
+    private void createTableColumns(TableView<Department> tbvDepartments) {
+        TableColumn<Department, Integer> colId = new TableColumn<Department, Integer>("ID");
+        colId.setCellValueFactory(new PropertyValueFactory<Department, Integer>("id"));
+        tbvDepartments.getColumns().add(colId);
+
+        TableColumn<Department, Integer> colDANE = new TableColumn<Department, Integer>("DANE");
+        colDANE.setCellValueFactory(new PropertyValueFactory<Department, Integer>("DANEId"));
+        tbvDepartments.getColumns().add(colDANE);
+
+        TableColumn<Department, String> colName = new TableColumn<Department, String>("Name");
+        colName.setCellValueFactory(new PropertyValueFactory<Department, String>("name"));
+        tbvDepartments.getColumns().add(colName);
+    }
+
+    public void add(String DANE, String name, TableView<Department> tbvDepartments) {
+        boolean ok = name.length() > 0;
+        ok = ok && DANE.length() > 0;
+        int DANEId = 0;
+        try {
+            DANEId = Integer.parseInt(DANE);
+        } catch (Exception e) {
+            ok = false;
+        }
+
+        if (ok) {
+            Alert a = new Alert(AlertType.CONFIRMATION);
+            a.setContentText("Please confirm the add operation.");
+            Optional<ButtonType> choice = a.showAndWait();
+
+            if (choice.get() == ButtonType.OK) {
+                Department department = new Department(DANEId, name);
+                if (this._db.insert(department)) {
+                    fillTable(tbvDepartments);
+
+                    a = new Alert(AlertType.INFORMATION);
+                    a.setContentText("Department added!");
+                    a.show();
+                }
+                else {
+                    a = new Alert(AlertType.ERROR);
+                    a.setContentText("Department not added!");
+                    a.show();
+                }
+            }
+        }
+        else {
+            Alert a = new Alert(AlertType.ERROR);
+            a.setContentText("Some fields to add are empty or wrong. Please check them.");
+            a.show();
+        }
+    }
+
+    public void update(String id, String DANE, String name, TableView<Department> tbvDepartments) {
+        boolean ok = name.length() > 0;
+        ok = ok && DANE.length() > 0;
+        int DANEId = 0;
+        int departmentId = 0;
+        try {
+            departmentId = Integer.parseInt(id);
+            DANEId = Integer.parseInt(DANE);
+        } catch (Exception e) {
+            ok = false;
+        }
+
+        if (ok) {
+            Alert a = new Alert(AlertType.CONFIRMATION);
+            a.setContentText("Please confirm the update operation.");
+            Optional<ButtonType> choice = a.showAndWait();
+
+            if (choice.get() == ButtonType.OK) {
+                Department department = new Department(DANEId, name);
+                if (this._db.update(departmentId, department)) {
+                    fillTable(tbvDepartments);
+
+                    a = new Alert(AlertType.INFORMATION);
+                    a.setContentText("Department updated!");
+                    a.show();
+                }
+                else {
+                    a = new Alert(AlertType.ERROR);
+                    a.setContentText("Department not updated!");
+                    a.show();
+                }
+            }
+
+        }
+        else {
+            Alert a = new Alert(AlertType.ERROR);
+            a.setContentText("Some fields to add are empty or wrong. Please check them.");
+            a.show();
+        }
+    }
+
+    public boolean delete(String id, TableView<Department> tbvDepartments) {
+        int departmentId;
+        try {
+            departmentId = Integer.parseInt(id);
+        } catch (Exception e) {
+            return false;
+        }
+
+        Alert a = new Alert(AlertType.CONFIRMATION);
+        a.setContentText("Please confirm the delete operation.");
+        Optional<ButtonType> choice = a.showAndWait();
+
+        if (choice.get() == ButtonType.OK) {
+            if (this._db.delete(departmentId, "department")) {
+                fillTable(tbvDepartments);
+
+                a = new Alert(AlertType.INFORMATION);
+                a.setContentText("Department deleted!");
+                a.show();
+                return true;
+            }
+            else {
+                a = new Alert(AlertType.ERROR);
+                a.setContentText("Department not delete!");
+                a.show();
+            }
+        }
+        return false;
     }
 }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MilkPhAppController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="mniCloseApp" mnemonicParsing="false" onAction="#mniCloseAppClick" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="mniAbout" mnemonicParsing="false" onAction="#mniAboutClick" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane prefHeight="745.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabProcessing" text="Milk processing">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="1024.0" />
+            </content>
+          </Tab>
+          <Tab fx:id="tabMilkings" text="Milkings">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="1024.0" />
+            </content>
+          </Tab>
+            <Tab fx:id="tabCompanies" text="Companies">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="tabUsers" text="Users">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="tabFarms" text="Farms">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="tabMunicipalities" text="Municipalities">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbvMunicipalities" layoutX="464.0" layoutY="32.0" prefHeight="655.0" prefWidth="530.0" />
+                        <Label fx:id="labMunicipalityId" layoutX="47.0" layoutY="137.0" text="Label" />
+                        <Label layoutX="47.0" layoutY="187.0" text="Name:" />
+                        <Label layoutX="47.0" layoutY="232.0" text="DANE id:" />
+                        <Label layoutX="47.0" layoutY="277.0" text="Department:" />
+                        <Label layoutX="47.0" layoutY="322.0" text="Latitude:" />
+                        <Label layoutX="47.0" layoutY="374.0" text="Longitude:" />
+                        <TextField fx:id="txtMunicipalityName" layoutX="144.0" layoutY="183.0" prefHeight="26.0" prefWidth="306.0" />
+                        <TextField fx:id="txtMunicipalityDANE" layoutX="144.0" layoutY="228.0" />
+                        <ComboBox fx:id="cmbMunicipalityDepartment" layoutX="144.0" layoutY="273.0" onAction="#cmbMunicipalityDepartmentClick" prefHeight="26.0" prefWidth="304.0" />
+                        <TextField fx:id="txtMunicipalityLatitude" layoutX="144.0" layoutY="318.0" />
+                        <TextField fx:id="txtMunicipalityLongitude" layoutX="144.0" layoutY="370.0" />
+                        <ButtonBar layoutX="43.0" layoutY="647.0" prefHeight="40.0" prefWidth="407.0">
+                          <buttons>
+                            <Button fx:id="butAddMunicipality" mnemonicParsing="false" onAction="#butAddMunicipalityClick" text="Add" />
+                            <Button fx:id="butUpdateMunicipality" mnemonicParsing="false" onAction="#butUpdateMunicipalityClick" text="Update" />
+                            <Button fx:id="butDeleteMunicipality" mnemonicParsing="false" onAction="#butDeleteMunicipalityClick" text="Delete" />
+                          </buttons>
+                        </ButtonBar>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="tabDepartments" text="Departments">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tbvDepartments" layoutX="479.0" layoutY="14.0" prefHeight="671.0" prefWidth="531.0" />
+                        <Label layoutX="53.0" layoutY="185.0" text="Name:" />
+                        <Label layoutX="53.0" layoutY="236.0" text="DANE id:" />
+                        <TextField fx:id="txtDepartmentName" layoutX="153.0" layoutY="181.0" prefHeight="26.0" prefWidth="307.0" />
+                        <TextField fx:id="txtDepartmentDANE" layoutX="153.0" layoutY="232.0" />
+                        <ButtonBar layoutX="26.0" layoutY="645.0" prefHeight="40.0" prefWidth="445.0">
+                          <buttons>
+                            <Button fx:id="butAddDepartment" mnemonicParsing="false" onAction="#butAddDepartmentClick" text="Add" />
+                            <Button fx:id="butUpdateDepartment" mnemonicParsing="false" onAction="#butUpdateDepartmentClick" text="Update" />
+                            <Button fx:id="butDeleteDepartment" mnemonicParsing="false" onAction="#butDeleteDepartmentClick" text="Delete" />
+                          </buttons>
+                        </ButtonBar>
+                        <Label fx:id="labDepartmentId" layoutX="55.0" layoutY="138.0" visible="false" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</VBox>

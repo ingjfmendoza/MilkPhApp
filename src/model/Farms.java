@@ -100,4 +100,12 @@ public class Farms {
         }
         return s + "|\n" + this._line + "\n";
     }
+
+    public String[] options() {
+        String[] options = new String[this._farms.length];
+        for (int i = 0; i < this._farms.length; i++) {
+            options[i] = this._farms[i].name;
+        }
+        return options;
+    }
 }
